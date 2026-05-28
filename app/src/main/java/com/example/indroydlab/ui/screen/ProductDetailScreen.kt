@@ -25,6 +25,7 @@ import com.example.indroydlab.ui.viewmodel.ProductViewModel
 
 @Composable
 fun ProductDetailScreen(
+    onBack: () -> Unit,
     productId: String,
     viewModel: ProductViewModel = viewModel()
 ){
@@ -34,15 +35,13 @@ fun ProductDetailScreen(
         Scaffold(
             topBar = {
                 TopbarApp(
-                    "Product Detail",
-                    onClickBack = { }
+                    title = "Product Detail",
+                    onClickBack = onBack
                 )
             }
-        ) { paddingValue ->
+        ) { paddingValues ->
             Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValue),
+                modifier = Modifier.fillMaxSize().padding(paddingValues),
                 contentAlignment = Alignment.Center
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
@@ -61,9 +60,7 @@ fun ProductDetailScreen(
                                 text = "₹${product.discountedPrice}",
                                 color = colorScheme.secondary,
                             )
-
                             Text(text = "₹${product.originalPrice}")
-
                         } else {
                             Text(text = "₹${product.originalPrice}")
                         }
@@ -80,8 +77,8 @@ fun ProductDetailScreen(
 @Composable
 fun ProductDetailPreview( ) {
     IndroydLabTheme{
-
         ProductDetailScreen(
+            onBack = {},
             productId = String()
         )
     }

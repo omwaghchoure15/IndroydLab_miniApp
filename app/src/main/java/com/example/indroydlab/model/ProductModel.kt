@@ -7,7 +7,6 @@ data class ProductModel (
     val discountedPrice: Double?, // nullable
     val taxPercent: Double
 ){
-    val finalPrice: Double
-        get() = discountedPrice ?: originalPrice
+    val finalPrice: Double get() = discountedPrice ?: originalPrice
 }
 

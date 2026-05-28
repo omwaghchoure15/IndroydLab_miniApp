@@ -1,38 +1,29 @@
 package com.example.indroydlab.ui.shared.topbar
 
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.AddShoppingCart
-import androidx.compose.material.icons.filled.LightMode
-import androidx.compose.material.icons.filled.Nightlight
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme.colorScheme
-import androidx.compose.material3.Switch
-import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarDefaults.topAppBarColors
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import com.example.indroydlab.ui.theme.Blue
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
 import com.example.indroydlab.ui.theme.White
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopbarApp(
     title: String,
-    onClickBack: () -> Unit,
+    onClickBack: () -> Unit = { } ,
     windowInsets: WindowInsets = WindowInsets.statusBars
 ) {
     TopAppBar(
@@ -45,15 +36,12 @@ fun TopbarApp(
             actionIconContentColor = Color.Unspecified
         ),
         navigationIcon = {
-            onClickBack?.let {
-                IconButton(onClick = it) {
-                    Icon(
-                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Back Button",
-                        tint = White
-
-                        )
-                }
+            IconButton(onClick = onClickBack ) {
+                Icon(
+                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                    contentDescription = "Back Button",
+                    tint = White
+                )
             }
         },
         title = {

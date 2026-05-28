@@ -7,10 +7,7 @@ data class CartItem (
     fun getItemPrice(): Double {
         return  (product.discountedPrice ?: product.originalPrice) * quantity
     }
-
-    fun getTaxAmount(): Double {
-        return getItemPrice() * product.taxPercent / 100
-    }
+    fun getTaxAmount(): Double { return getItemPrice() * product.taxPercent / 100 }
 
     fun getItemTotal(): Double = getItemPrice()
 }

@@ -1,7 +1,6 @@
 package com.example.indroydlab.ui.screen
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,7 +9,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -18,7 +16,6 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.airbnb.lottie.compose.*
 import com.example.indroydlab.R
-import com.example.indroydlab.model.CartItem
 import com.example.indroydlab.ui.shared.card.CartItemCard
 import com.example.indroydlab.ui.theme.IndroydLabTheme
 import com.example.indroydlab.ui.viewmodel.CartViewModel
@@ -31,9 +28,7 @@ fun CartScreen(viewModel: CartViewModel) {
     var isOrderPlaced by remember { mutableStateOf(false) }
 
     if (isOrderPlaced) {
-        CheckoutSuccessScreen(
-            onDone = { isOrderPlaced = false }
-        )
+        CheckoutSuccessScreen(onDone = { isOrderPlaced = false })
         return
     }
 
@@ -173,7 +168,7 @@ fun CheckoutSuccessScreen(onDone: () -> Unit) {
 
                 Spacer(modifier = Modifier.height(22.dp))
 
-                Text(text = "Order Placed Successfully", fontSize = 20.sp)
+                Text("Order Placed Successfully", fontSize = 20.sp)
 
                 Spacer(modifier = Modifier.height(32.dp))
 

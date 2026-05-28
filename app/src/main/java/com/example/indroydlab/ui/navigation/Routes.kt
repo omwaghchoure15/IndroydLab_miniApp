@@ -7,16 +7,17 @@ import kotlinx.serialization.Serializable
  * Defines all possible navigation destinations in the app.
  * Extending [NavKey] allows these objects to be used as keys in the Navigation 3 backstack.
  */
-sealed interface Routes : NavKey {
+@Serializable
+sealed interface Routes: NavKey {
 
     @Serializable
     data object Home : Routes
 
     @Serializable
-    data object ProductScreen : Routes
+    data object ProductKey : Routes
 
     @Serializable
-    data object CartScreen : Routes
+    data object CartKey : Routes
 
     /**
      * @param productId using Int to match the ProductModel's ID type.

@@ -12,10 +12,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
+import androidx.navigation3.runtime.rememberNavBackStack
 import com.example.indroydlab.ui.shared.card.ProductCard
 import com.example.indroydlab.ui.shared.topbar.TopbarApp
 import com.example.indroydlab.ui.theme.IndroydLabTheme
@@ -24,6 +28,7 @@ import com.example.indroydlab.ui.viewmodel.ProductViewModel
 
 @Composable
 fun ProductScreen(
+    onback: () -> Unit,
     onProductClick: (Int) -> Unit
 ) {
     val productViewModel: ProductViewModel = viewModel()
@@ -35,8 +40,8 @@ fun ProductScreen(
         Scaffold(
             topBar = {
                 TopbarApp(
-                    "Testing",
-                    onClickBack = {}
+                    title = "Testing",
+                    onClickBack = onback
                 )
             }
         ) { paddingValues ->
@@ -72,6 +77,7 @@ fun ProductScreen(
 fun ProductScreenPreview() {
     IndroydLabTheme {
         ProductScreen(
+            onback = {},
             onProductClick = { }
         )
     }
