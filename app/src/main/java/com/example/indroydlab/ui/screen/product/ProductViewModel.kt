@@ -1,12 +1,11 @@
-package com.example.indroydlab.ui.viewmodel
+package com.example.indroydlab.ui.screen.product
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import com.example.indroydlab.data.ProductRepository
 import com.example.indroydlab.model.ProductModel
-import com.example.indroydlab.ui.navigation.Routes
 
-class ProductViewModel: ViewModel(){
+class ProductViewModel() : ViewModel() {
     private val _products = mutableStateListOf<ProductModel>()
     val products: List<ProductModel> = _products
 
@@ -16,7 +15,11 @@ class ProductViewModel: ViewModel(){
         _products.addAll(ProductRepository.getProducts())
     }
 
-    fun getProductById(id: String): ProductModel?{
-        return _products.find { it.id.toString() == id }
+    init {
+        println("ProductViewModel: init")
+    }
+    override fun onCleared() {
+        super.onCleared()
+        println("ProductViewModel: Cleared")
     }
 }

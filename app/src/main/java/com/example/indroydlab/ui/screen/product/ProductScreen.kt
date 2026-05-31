@@ -1,4 +1,4 @@
-package com.example.indroydlab.ui.screen
+package com.example.indroydlab.ui.screen.product
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -12,36 +12,31 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation3.runtime.NavBackStack
-import androidx.navigation3.runtime.NavKey
-import androidx.navigation3.runtime.rememberNavBackStack
+import com.example.indroydlab.ui.screen.cart.CartViewModel
 import com.example.indroydlab.ui.shared.card.ProductCard
 import com.example.indroydlab.ui.shared.topbar.TopbarApp
 import com.example.indroydlab.ui.theme.IndroydLabTheme
-import com.example.indroydlab.ui.viewmodel.CartViewModel
-import com.example.indroydlab.ui.viewmodel.ProductViewModel
 
 @Composable
 fun ProductScreen(
-    onback: () -> Unit,
-    onProductClick: (Int) -> Unit
+    viewModel: ProductViewModel = viewModel { ProductViewModel() },
+    onBack: () -> Unit,
+    onProductClick: (String) -> Unit
 ) {
-    val productViewModel: ProductViewModel = viewModel()
     val cartViewModel: CartViewModel = viewModel()
     var isDarkTheme by remember { mutableStateOf(false) }
-    val products = productViewModel.products
+    val products = viewModel.products
 
     IndroydLabTheme( darkTheme = isDarkTheme ) {
         Scaffold(
             topBar = {
                 TopbarApp(
                     title = "Testing",
-                    onClickBack = onback
+                    onClickBack = onBack
                 )
             }
         ) { paddingValues ->
@@ -61,7 +56,7 @@ fun ProductScreen(
                     ){ products ->
                         ProductCard(
                             product = products,
-                            onClick ={ onProductClick(products.id)},
+                            onClick ={ onProductClick(products.id.toString())},
                             addToCart = { cartViewModel.addToCart(products)}
                         )
                     }
@@ -77,7 +72,7 @@ fun ProductScreen(
 fun ProductScreenPreview() {
     IndroydLabTheme {
         ProductScreen(
-            onback = {},
+            onBack = {},
             onProductClick = { }
         )
     }

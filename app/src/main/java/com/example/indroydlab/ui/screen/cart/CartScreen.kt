@@ -1,4 +1,4 @@
-package com.example.indroydlab.ui.screen
+package com.example.indroydlab.ui.screen.cart
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
@@ -18,11 +18,12 @@ import com.airbnb.lottie.compose.*
 import com.example.indroydlab.R
 import com.example.indroydlab.ui.shared.card.CartItemCard
 import com.example.indroydlab.ui.theme.IndroydLabTheme
-import com.example.indroydlab.ui.viewmodel.CartViewModel
 import kotlinx.coroutines.delay
 
 @Composable
-fun CartScreen(viewModel: CartViewModel) {
+fun CartScreen(
+    viewModel: CartViewModel = viewModel { CartViewModel() },
+) {
 
     val cartItems = viewModel.cartItem
     var isOrderPlaced by remember { mutableStateOf(false) }
@@ -58,7 +59,6 @@ fun CartScreen(viewModel: CartViewModel) {
         }
     }
         else {
-
             LazyColumn(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.spacedBy(10.dp)

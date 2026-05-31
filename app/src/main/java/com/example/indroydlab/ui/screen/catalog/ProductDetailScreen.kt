@@ -1,4 +1,4 @@
-package com.example.indroydlab.ui.screen
+package com.example.indroydlab.ui.screen.catalog
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,13 +21,12 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.indroydlab.ui.shared.topbar.TopbarApp
 import com.example.indroydlab.ui.theme.IndroydLabTheme
-import com.example.indroydlab.ui.viewmodel.ProductViewModel
 
 @Composable
 fun ProductDetailScreen(
     onBack: () -> Unit,
     productId: String,
-    viewModel: ProductViewModel = viewModel()
+    viewModel: ProductDetailViewModel = viewModel{ ProductDetailViewModel(productId) }
 ){
     val product = viewModel.getProductById(productId)
 
@@ -35,7 +34,7 @@ fun ProductDetailScreen(
         Scaffold(
             topBar = {
                 TopbarApp(
-                    title = "Product Detail",
+                    title = "Product Details Screen",
                     onClickBack = onBack
                 )
             }
@@ -45,9 +44,9 @@ fun ProductDetailScreen(
                 contentAlignment = Alignment.Center
             ) {
                 Column(modifier = Modifier.padding(16.dp)) {
-
-                    Text(text = product.name, fontSize = 16.sp)
-
+                    Text(text = "Product", fontSize = 36.sp)
+                    Spacer(modifier = Modifier.height(24.dp))
+                    Text(text = product.name, fontSize = 24.sp)
                     Spacer(modifier = Modifier.height(6.dp))
 
                     Row(

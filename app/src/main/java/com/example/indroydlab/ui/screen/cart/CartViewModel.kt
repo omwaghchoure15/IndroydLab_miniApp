@@ -1,4 +1,4 @@
-package com.example.indroydlab.ui.viewmodel
+package com.example.indroydlab.ui.screen.cart
 
 import androidx.lifecycle.ViewModel
 import com.example.indroydlab.model.CartItem
