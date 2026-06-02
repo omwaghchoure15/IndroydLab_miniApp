@@ -1,4 +1,4 @@
-package com.example.indroydlab.ui.screen.product
+package com.example.indroydlab.ui.screen.catalog.product
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel

@@ -30,19 +30,19 @@ fun ProductDetailScreen(
 ){
     val product = viewModel.getProductById(productId)
 
-    product?.let {
-        Scaffold(
-            topBar = {
-                TopbarApp(
-                    title = "Product Details Screen",
-                    onClickBack = onBack
-                )
-            }
-        ) { paddingValues ->
-            Box(
-                modifier = Modifier.fillMaxSize().padding(paddingValues),
-                contentAlignment = Alignment.Center
-            ) {
+    Scaffold(
+        topBar = {
+            TopbarApp(
+                title = if (product != null) "Product Details" else "Not Found",
+                onClickBack = onBack
+            )
+        }
+    ) { paddingValues ->
+        Box(
+            modifier = Modifier.fillMaxSize().padding(paddingValues),
+            contentAlignment = Alignment.Center
+        ) {
+            if (product != null) {
                 Column(modifier = Modifier.padding(16.dp)) {
                     Text(text = "Product", fontSize = 36.sp)
                     Spacer(modifier = Modifier.height(24.dp))
@@ -67,6 +67,8 @@ fun ProductDetailScreen(
                         Text(text = "Tax: ${product.taxPercent}%", color = colorScheme.tertiary)
                     }
                 }
+            } else {
+                Text(text = "Product not found: $productId", fontSize = 18.sp)
             }
         }
     }
@@ -78,7 +80,7 @@ fun ProductDetailPreview( ) {
     IndroydLabTheme{
         ProductDetailScreen(
             onBack = {},
-            productId = String()
+            productId = "Wireless_Headphone"
         )
     }
 }

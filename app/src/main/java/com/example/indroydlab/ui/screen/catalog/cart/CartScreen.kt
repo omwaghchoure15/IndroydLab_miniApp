@@ -1,4 +1,4 @@
-package com.example.indroydlab.ui.screen.cart
+package com.example.indroydlab.ui.screen.catalog.cart
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*

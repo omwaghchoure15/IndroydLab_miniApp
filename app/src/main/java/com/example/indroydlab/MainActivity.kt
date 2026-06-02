@@ -13,10 +13,9 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         setContent {
             IndroydLabTheme {
-                NavigationRoot()
+                // Pass the intent data to the NavigationRoot to handle potential deep links
+                NavigationRoot(intentData = intent?.data)
             }
         }
     }
 }
-
-

@@ -15,8 +15,14 @@ class ProductDetailViewModel(val productId: String) : ViewModel() {
         _products.addAll(ProductRepository.getProducts())
     }
 
-    fun getProductById(id: String): ProductModel?{
-        return _products.find { it.id.toString() == id }
+    /**
+     * Finds a product by its ID or Name.
+     * This supports deep links that use either numeric IDs or descriptive names.
+     */
+    fun getProductById(identifier: String): ProductModel?{
+        return _products.find { 
+            it.id.toString() == identifier || it.name.equals(identifier, ignoreCase = true) 
+        }
     }
 
 
