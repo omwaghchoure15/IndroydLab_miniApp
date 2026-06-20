@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">इंद्रॉइड लॅब</string>
+
+    <string name="login">लॉगिन</string>
+    <string name="register">नोंदणी करा</string>
+
+    <string name="nav_home">होम</string>
+    <string name="nav_catalog">कॅटलॉग</string>
+    <string name="nav_tool">टूल</string>
+    <string name="nav_setting">सेटिंग्ज</string>
+</resources>

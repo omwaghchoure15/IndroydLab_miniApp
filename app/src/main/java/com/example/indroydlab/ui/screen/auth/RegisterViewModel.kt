@@ -1,5 +1,6 @@
 package com.example.indroydlab.ui.screen.auth
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -15,6 +16,7 @@ class RegisterViewModel: ViewModel() {
         _counter.value++
     }
 
+    @SuppressLint("EmptySuperCall")
     override fun onCleared() {
         super.onCleared()
         println("RegisterViewModel: Cleared")

@@ -5,12 +5,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 sealed class Home: NavKey {
-
     @Serializable
     data object Dashboard: Home()
     @Serializable
     data object Catalog: Home()
     @Serializable
     data object Setting: Home()
-
 }

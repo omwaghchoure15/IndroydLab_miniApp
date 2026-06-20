@@ -64,8 +64,8 @@ import com.example.indroydlab.ui.theme.TextSecondary
 import com.example.indroydlab.ui.theme.White
 
 @Composable
-fun DashboardScreen(
-) {
+fun DashboardScreen() {
+
     var isStoreActive by remember { mutableStateOf(true) }
 
     Column(
@@ -113,84 +113,6 @@ fun DashboardScreen(
                         disabledUncheckedTrackColor = Color(0xFFCBD5E1).copy(alpha = 0.5f)
                     )
                 )
-            }
-        }
-
-    ElevatedCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .offset(y = (-40).dp)
-            .padding(horizontal = 18.dp),
-        shape = RoundedCornerShape(24.dp),
-        colors = CardDefaults.elevatedCardColors(containerColor = CardWhite),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
-    ) {
-        Column(
-            modifier = Modifier.fillMaxWidth().padding(20.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = "Share Store Link",
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.Bold,
-                    color = TextPrimary
-                )
-            }
-            Text(
-                text = "Share your store's link to start receiving orders directly from customers.",
-                color = TextSecondary,
-                fontSize = 14.sp,
-                lineHeight = 20.sp
-            )
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(12.dp)
-            ) {
-                Surface(
-                    modifier = Modifier.weight(1f).height(48.dp),
-                    color = LofazBlueLight,
-                    shape = RoundedCornerShape(12.dp),
-                    border = BorderStroke(1.dp, BorderColor)
-                ) {
-                    Row(
-                        modifier = Modifier.padding(horizontal = 12.dp, vertical = 2.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                            Text(
-                                text = "IndroydLab.com",
-                                color = Color(0xFF0061AF),
-                                fontSize = 15.sp,
-                                fontWeight = FontWeight.Bold,
-                                maxLines = 1,
-                                overflow = TextOverflow.Ellipsis,
-                                modifier = Modifier.weight(1f)
-                                    .clickable(onClick = {})
-                            )
-                        }
-                    }
-
-                    Surface(
-                        onClick = {},
-                        color = LofazBlue,
-                        shape = RoundedCornerShape(12.dp),
-                        modifier = Modifier.size(48.dp)
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Icon(
-                                imageVector = Icons.Default.Share,
-                                contentDescription = "Share",
-                                tint = White,
-                                modifier = Modifier.size(20.dp)
-                            )
-                        }
-                    }
-                }
             }
         }
 

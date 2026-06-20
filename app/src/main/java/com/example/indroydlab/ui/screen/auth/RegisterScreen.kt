@@ -1,5 +1,6 @@
 package com.example.indroydlab.ui.screen.auth
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,13 +13,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.indroydlab.ui.screen.auth.authNavigation.ShareAuthViewModel
 
 @Composable
 fun RegisterScreen(
     viewModel: RegisterViewModel = viewModel(),
     shareAuthViewModel: ShareAuthViewModel = viewModel(),
-    modifier: Modifier = Modifier
+    @SuppressLint("ModifierParameter") modifier: Modifier = Modifier
 ){
     val localCounter by viewModel.counter.collectAsStateWithLifecycle()
     val sharedCounter by shareAuthViewModel.counter.collectAsStateWithLifecycle()
@@ -39,7 +39,7 @@ fun RegisterScreen(
             onClick = viewModel::bump
         ) {
             Text(
-                text = "Local counter: $sharedCounter"
+                text = "Local counter: $localCounter"
             )
         }
     }

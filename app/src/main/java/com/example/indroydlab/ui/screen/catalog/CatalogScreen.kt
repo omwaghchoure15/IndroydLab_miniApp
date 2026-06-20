@@ -66,18 +66,18 @@ fun CatalogScreen( onProductClick: (String) -> Unit ) {
                         onClick = { scope.launch { pagerState.animateScrollToPage(index) } },
                         text = {
                             Text(
-                                text = when(key) {
+                                text = when (key) {
                                     Catalog.Product -> "Products"
-                                    Catalog.Cart -> "Cart" },
-                                    fontWeight = if (selected == index) FontWeight.Bold else FontWeight.Medium
-                                )
-                            },
-                            selectedContentColor = LofazBlue,
-                            unselectedContentColor = UnselectedColor
-                        )
-                    }
+                                    Catalog.Cart -> "Cart"
+                                },
+                                fontWeight = if (selected == index) FontWeight.Bold else FontWeight.Medium
+                            )
+                        },
+                        selectedContentColor = LofazBlue,
+                        unselectedContentColor = UnselectedColor
+                    )
                 }
-
+            }
         },
         containerColor = PageBg
     ) { paddingValues ->

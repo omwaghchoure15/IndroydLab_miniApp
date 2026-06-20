@@ -8,8 +8,6 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
-import com.example.indroydlab.ui.screen.auth.authNavigation.AuthNavigation
-import com.example.indroydlab.ui.screen.catalog.CatalogScreen
 import com.example.indroydlab.ui.screen.catalog.ProductDetailScreen
 import com.example.indroydlab.ui.screen.home.HomeScreen
 
@@ -27,7 +25,11 @@ fun NavigationRoot(intentData: Uri? = null) {
         if (deepLinkRoute != null) {
             // For deep links, we provide a stack that allows the user to go "back" 
             // to the Home screen instead of exiting the app.
-            listOf(Routes.Home, deepLinkRoute)
+            if (deepLinkRoute is Routes.ProductDetail) {
+                listOf(Routes.Home(), deepLinkRoute)
+            } else {
+                listOf(deepLinkRoute)
+            }
         } else {
             // Default starting destination
             listOf(Routes.Auth)
@@ -50,19 +52,13 @@ fun NavigationRoot(intentData: Uri? = null) {
                 AuthNavigation(
                     onLogin = {
                         rootBackStack.removeLastOrNull()
-                        rootBackStack.add(Routes.Home)
+                        rootBackStack.add(Routes.Home())
                     }
                 )
             }
-            entry<Routes.Home> {
+            entry<Routes.Home> { key ->
                 HomeScreen(
-                    onProductClick = { productId ->
-                        rootBackStack.add(Routes.ProductDetail(productId))
-                    }
-                )
-            }
-            entry<Routes.Catalog> {
-                CatalogScreen (
+                    selectedTab = key.selectedTab,
                     onProductClick = { productId ->
                         rootBackStack.add(Routes.ProductDetail(productId))
                     }
@@ -87,19 +83,28 @@ fun NavigationRoot(intentData: Uri? = null) {
  * @param uri The incoming URI to parse.
  * @return A [Routes] object if the URI is a valid deep link, null otherwise.
  */
+
 private fun parseDeepLink(uri: Uri?): Routes? {
+
     if (uri == null) return null
-    
+    val pathSegments = uri.pathSegments
+
     // Check for valid host
     val host = uri.host
     val validHosts = listOf("indroydlab.app", "indroydlab.com", "omwaghchoure15.github.io")
     if (host !in validHosts) return null
-    
-    val pathSegments = uri.pathSegments
-    
+
+    // Find where "Home" is in the path
+    val homeIndex = pathSegments.indexOfFirst { it.equals("Home",ignoreCase = true) }
+    if (homeIndex != -1) {
+        // Check if there is a segment after "Home"
+        val subTab = pathSegments.getOrNull(homeIndex + 1)
+        return Routes.Home(selectedTab = subTab)
+    }
+
     // Pattern: /catalog/product/{id}
     // We check if "catalog" and "product" exist in the path to be more flexible 
-    // with GitHub Pages sub-directories if necessary.
+    // with GitHub Pages subdirectories if necessary.
     val catalogIndex = pathSegments.indexOfFirst { it.equals("catalog", ignoreCase = true) }
     if (catalogIndex != -1 && pathSegments.size > catalogIndex + 2) {
         if (pathSegments[catalogIndex + 1].equals("product", ignoreCase = true)) {

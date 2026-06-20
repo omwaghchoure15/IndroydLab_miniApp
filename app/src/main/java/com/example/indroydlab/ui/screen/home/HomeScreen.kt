@@ -10,14 +10,21 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
+import com.example.indroydlab.ui.screen.DashboardScreen
 import com.example.indroydlab.ui.screen.SettingScreen
 import com.example.indroydlab.ui.screen.catalog.CatalogScreen
 
 @Composable
 fun HomeScreen(
+    selectedTab: String? = null,
     onProductClick: (String) -> Unit
 ){
-    val backStack = rememberNavBackStack(Home.Dashboard)
+    val initialTab = when(selectedTab?.lowercase()) {
+        "catalog" -> Home.Catalog
+        "setting" -> Home.Setting
+        else -> Home.Dashboard
+    }
+    val backStack = rememberNavBackStack(initialTab)
 
     Scaffold(
         bottomBar = {
@@ -43,15 +50,13 @@ fun HomeScreen(
             ),
             entryProvider = entryProvider {
                 entry<Home.Dashboard> {
-
+                    DashboardScreen()
                 }
                 entry<Home.Catalog> {
                     CatalogScreen(onProductClick = onProductClick)
                 }
                 entry<Home.Setting> {
-                    SettingScreen(
-
-                    )
+                    SettingScreen()
                 }
             }
         )

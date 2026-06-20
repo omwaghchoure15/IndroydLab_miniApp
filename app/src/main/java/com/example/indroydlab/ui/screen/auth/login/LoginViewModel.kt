@@ -1,24 +1,24 @@
-package com.example.indroydlab.ui.screen.auth.authNavigation
+package com.example.indroydlab.ui.screen.auth.login
 
+import android.annotation.SuppressLint
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class ShareAuthViewModel: ViewModel() {
-
+class LoginViewModel: ViewModel() {
     private val _counter = MutableStateFlow(0)
     val counter = _counter.asStateFlow()
 
     init {
-        println("ShareAuthViewModel: init")
+        println("LoginViewModel: init")
     }
     fun bump(){
         _counter.value++
     }
 
+    @SuppressLint("EmptySuperCall")
     override fun onCleared() {
         super.onCleared()
-        println("ShareAuthViewModel: Cleared")
+        println("LoginViewModel: Cleared")
     }
-
 }

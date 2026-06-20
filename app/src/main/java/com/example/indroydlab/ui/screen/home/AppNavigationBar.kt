@@ -11,14 +11,10 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Inventory2
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.outlined.Home
-import androidx.compose.material.icons.outlined.Inventory2
-import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -31,11 +27,12 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.indroydlab.ui.theme.LofazBlue
-import com.example.indroydlab.ui.theme.UnselectedColor
+import com.example.indroydlab.R
+import com.example.indroydlab.ui.theme.*
 
 data class NavItem(
     val key: Home,
@@ -50,9 +47,9 @@ fun AppNavigationBar(
     onNavigate: (Home) -> Unit
 ) {
     val navItems = listOf(
-        NavItem(Home.Dashboard,  "Home",    Icons.Filled.Home,       Icons.Outlined.Home),
-        NavItem(Home.Catalog, "Catalog", Icons.Filled.Inventory2, Icons.Outlined.Inventory2),
-        NavItem(Home.Setting,  "Setting", Icons.Filled.Settings,   Icons.Outlined.Settings)
+        NavItem(Home.Dashboard, stringResource(R.string.nav_home),    Icons.Filled.Home,       Icons.Outlined.Home),
+        NavItem(Home.Catalog,   stringResource(R.string.nav_catalog), Icons.Filled.Inventory2, Icons.Outlined.Inventory2),
+        NavItem(Home.Setting,   stringResource(R.string.nav_setting), Icons.Filled.Settings,   Icons.Outlined.Settings)
     )
 
     Surface(
