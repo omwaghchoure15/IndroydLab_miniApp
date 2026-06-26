@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     // Optional, provides the @Serialize annotation for autogeneration of Serializers.
     alias(libs.plugins.jetbrains.kotlin.serialization)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -28,6 +29,7 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
     compileOptions {
@@ -36,6 +38,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 
@@ -50,6 +53,8 @@ dependencies {
     implementation(libs.androidx.material3)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.room.ktx)
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.config)
     implementation(libs.lottie.compose)
     implementation(libs.androidx.core.splashscreen)
     implementation(platform(libs.androidx.compose.bom))
@@ -65,6 +70,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel.navigation3)
     implementation(libs.androidx.material3.adaptive.navigation3)
     implementation(libs.kotlinx.serialization.core)
+
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
 
     implementation(libs.androidx.datastore.preferences.core)
     implementation(libs.androidx.datastore.core)
